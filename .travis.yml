@@ -15,8 +15,8 @@ deploy:
     branch: master
   bucket: workshop-level400-s3-sam
 - provider: codedeploy
-  access_key_id: $AWS_ACCESS_KEY
-  secret_access_key: $AWS_SECRET_ACCESS_KEY
+  access_key_id: AKIAJF66IZQXJMCB6QGA
+  secret_access_key: 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
   bucket: workshop-level400-s3-scottliao
   key: workshop-${TRAVIS_BUILD_NUMBER}.zip
   application: workshop-level400-cicd
