@@ -17,9 +17,9 @@ deploy:
 - provider: codedeploy
   access_key_id: AKIAJF66IZQXJMCB6QGA
   secret_access_key: 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
-  bucket: workshop-level400-s3-scottliao
+  bucket: workshop-level400-s3-sam
   key: workshop-${TRAVIS_BUILD_NUMBER}.zip
-  application: workshop-level400-cicd
+  application: workshop-400-cicd
   deployment_group: master
   region: us-east-1
   on:
