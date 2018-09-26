@@ -1,0 +1,26 @@
+language: bash
+before_deploy:
+  - zip -r latest *
+  - test -d dpl_cd_upload || mkdir dpl_cd_upload
+  - mv latest.zip dpl_cd_upload/workshop-${TRAVIS_BUILD_NUMBER}.zip
+deploy:
+- provider: s3
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: 
+    secure: $AWS_SECRET_ACCESS_KEY
+  local_dir: dpl_cd_upload
+  skip_cleanup: true
+  region: us-east-1
+  on:
+    branch: master
+  bucket: workshop-level400-s3-sam
+- provider: codedeploy
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_ACCESS_KEY
+  bucket: workshop-level400-s3-scottliao
+  key: workshop-${TRAVIS_BUILD_NUMBER}.zip
+  application: workshop-level400-cicd
+  deployment_group: master
+  region: us-east-1
+  on:
+    branch: master
